@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow-sm my-3 mx-3">
+  <div class="card-header text-center">
+    <h2>予約内容を送信しました！</h2>
+  </div>
+  <div class="card-body">
+    <p>予約の希望は送信しましたが、予約が確定したわけでありません。
+      受け入れの可否や見学に関する詳細は担当者からのメールで行います。
+      しばらくお待ちください。
+    </p>
+    <a href="{% url 'semi:seminar' %}" class='btn btn-outline-primary'>ゼミ一覧へ戻る</a>
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

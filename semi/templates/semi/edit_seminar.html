@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+{% if edit_semi.account == request.user %}
+  <div class="text-center my-5">
+    <h2>ゼミ編集ページ</h2>
+  </div>
+
+  <div class="row">
+  <div class="text-left col-4 mb-2 ml-3">
+    <a href="{% url 'semi:seminar' %}" class='btn btn-outline-primary'>ゼミ一覧へ戻る</a>
+  </div>
+  <div class="text-right col-7 mb-2">
+      <a href="{% url 'semi:logout' %}" class='btn btn-outline-danger mb-2'>ログアウト</a>
+  </div>
+  </div>
+
+  <div class="card border-info shadow-sm my-3 mx-3">
+    <div class="card-header text-info">
+      <h5>アクセス者情報</h5>
+    </div>
+    <div class="card-body text-info">
+      <p>現在のログイン者「{{ request.user.username }}」さん</p>
+      <p>このゼミ紹介の作成者「{{ edit_semi.account }}」さん</p>
+    </div>
+  </div>
+
+  <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <div class="form-group col-8 offset-2">
+      <label>ゼミ名<span class='hissu'>＜必須＞</span></label>
+      <div class="row">
+        <div class="col-6 pr-0">
+          {{ form.semi_name|add_class:"form-control" }}
+          {{ form.semi_name.errors }}
+        </div>
+        <div class="col-2 mt-2 pl-0">
+          ゼミ
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group col-8 offset-2">
+      <label>担当教員のメールアドレス<span class='hissu'>＜必須＞</span></label>
+        {{ form.mail|add_class:"form-control" }}
+        {{ form.mail.errors }}
+    </div>
+
+    <div class="form-group col-8 offset-2">
+      <label>研究分野<span class='hissu'>＜必須＞</span> ex) 民事訴訟法</label>
+        {{ form.area_of_seminar|add_class:"form-control" }}
+        {{ form.area_of_seminar.errors }}
+    </div>
+
+    <div class="form-group col-8 offset-2">
+      <label>年間予定</label>
+        {{ form.semi_schedule|add_class:"form-control" }}
+        {{ form.semi_schedule.errors }}
+    </div>
+
+    <div class="form-group col-6 offset-2">
+      <label>4年生 男子の人数<span class='hissu'>＜必須＞</span></label>
+        {{ form.seni_men_num|add_class:"form-control" }}
+        {{ form.seni_men_num.errors }}
+    </div>
+    <div class="form-group col-6 offset-2">
+      <label>4年生 女子の人数<span class='hissu'>＜必須＞</span></label>
+        {{ form.seni_women_num|add_class:"form-control" }}
+        {{ form.seni_women_num.errors }}
+    </div>
+    <div class="form-group col-6 offset-2">
+      <label>3年生 男子の人数<span class='hissu'>＜必須＞</span></label>
+        {{ form.juni_men_num|add_class:"form-control" }}
+        {{ form.juni_men_num.errors }}
+    </div>
+    <div class="form-group col-6 offset-2">
+      <label>3年生 女子の人数<span class='hissu'>＜必須＞</span></label>
+        {{ form.juni_women_num|add_class:"form-control" }}
+        {{ form.juni_women_num.errors }}
+    </div>
+
+    <div class="form-group col-8 offset-2">
+      <label>このゼミの特色</label>
+        {{ form.feature|add_class:"form-control" }}
+        {{ form.feature.errors }}
+    </div>
+
+    <div class="form-group col-8 offset-2">
+      <label>見学可能日</label>
+        {{ form.visitable_date|add_class:"form-control" }}
+        {{ form.visitable_date.errors }}
+    </div>
+    <div class="form-group col-6 offset-2">
+      <label>対面orオンライン</label>
+        {{ form.on_offline|add_class:"form-control" }}
+        {{ form.on_offline.errors }}
+    </div>
+    <div class="form-group col-8 offset-2">
+      <label>見学希望者へのメッセージ</label>
+        {{ form.message_for_sutudent|add_class:"form-control" }}
+        {{ form.message_for_sutudent.errors }}
+    </div>
+
+    <div class="form-group col-8 offset-2">
+      <label>活動風景(1)</label>
+      {{ form.semi_image1|add_class:"form-control" }}
+      {{ form.semi_image1.errors }}
+    </div>
+    <div class="form-group col-8 offset-2">
+      <label>活動風景(2)</label>
+      {{ form.semi_image2|add_class:"form-control" }}
+      {{ form.semi_image2.errors }}
+    </div>
+    <div class="form-group col-8 offset-2">
+      <label>活動風景(3)</label>
+      {{ form.semi_image3|add_class:"form-control" }}
+      {{ form.semi_image3.errors }}
+    </div>
+    <div class="form-group col-8 offset-2">
+      <label>活動風景(4)</label>
+      {{ form.semi_image4|add_class:"form-control" }}
+      {{ form.semi_image4.errors }}
+    </div>
+    <div class="form-group col-8 offset-2">
+      <label>活動風景(5)</label>
+      {{ form.semi_image5|add_class:"form-control" }}
+      {{ form.semi_image5.errors }}
+    </div>
+    <div class="form-group col-8 offset-2">
+      <label>活動風景(6)</label>
+      {{ form.semi_image6|add_class:"form-control" }}
+      {{ form.semi_image6.errors }}
+    </div>
+
+  <input class="btn btn-outline-info col-6 offset-3 my-3" type="submit" value="変更内容を適用">
+  </form>
+
+
+  <div class="border-top  offset-1 pb-5 mt-3 mb-5">
+    <p class="mt-3">使い方ガイド</p>
+    <p>お問い合わせ</p>
+  </div>
+
+
+{% else %}
+  <h2>ログインが必要なページです。</h2>
+  <a href="{% url 'semi:login' %}">ログイン</a>
+{% endif %}
+
+  {% include 'refactoring.html' %}
+
+{% endblock %}

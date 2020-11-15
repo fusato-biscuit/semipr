@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% if detail_semi.account == request.user %}
+<div class="text-center mt-5 mb-5">
+  <h2>{{ detail_semi.semi_name }}ゼミ</h2>
+  <p class='text-info'>（管理者用画面）</p>
+</div>
+<div class="row">
+<div class="text-left col-4 mb-2 ml-3">
+  <a href="{% url 'semi:seminar' %}" class='btn btn-outline-primary'>ゼミ一覧へ戻る</a>
+</div>
+<div class="text-right col-7 mb-2">
+    <a href="{% url 'semi:logout' %}" class='btn btn-outline-danger mb-2'>ログアウト</a>
+</div>
+</div>
+  <div class="card border-info shadow-sm my-3 mx-3">
+    <div class="card-header text-info">
+      <h5>見学希望者確認</h5>
+    </div>
+    <div class="card-body text-info">
+      <p>ゼミの見学を希望する生徒からの申請を確認したい場合は「見学希望者の確認ボタン」をクリックしてください。</p>
+      <a href="{% url 'semi:booking_list' %}" class='btn btn-outline-success'>見学希望者の確認はコチラ</a>
+    </div>
+  </div>
+
+  <div class="card border-info shadow-sm my-3 mx-3">
+    <div class="card-header text-info">
+      <h5>「{{ detail_semi.semi_name }}ゼミ」の編集・削除</h5>
+    </div>
+    <div class="card-body text-info">
+      <p>ゼミの紹介内容を編集したい場合は「編集ボタン」を、紹介内容を全て削除したい場合は「削除ボタン」をクリックしてください。</p>
+      <div class="row">
+        <div class="text-center col-6">
+          <a class="btn btn-outline-success" href="{% url 'semi:edit_seminar' semi_id=detail_semi.id %}">編集</a>
+        </div>
+        <div class="text-center col-6">
+          <form action="{% url 'semi:delete_seminar' semi_id=detail_semi.id %}" method="post">{% csrf_token %}
+            <button class="btn btn-outline-danger" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% else %}
+<div class="text-center mt-5 mb-5">
+  <h2>{{ detail_semi.semi_name }}ゼミ</h2>
+</div>
+<div class="row">
+  <div class="text-left col-4 mb-2 ml-3">
+    <a href="{% url 'semi:send_booking' %}" class='btn btn-outline-primary'>見学予約はコチラから</a>
+  </div>
+  <div class="text-right col-7 mb-2">
+      <a href="{% url 'semi:seminar' %}" class='btn btn-outline-primary'>ゼミ一覧へ戻る</a>
+  </div>
+</div>
+
+{% endif %}
+
+<div class="card shadow-sm mt-2 mb-2 ml-3 mr-3">
+  <div class="card-header">
+    <h5>Mail</h5>
+  </div>
+  <div class="card-body">
+    <p>メール：{{ detail_semi.mail }}</p>
+  </div>
+</div>
+
+<div class="card shadow-sm mt-2 mb-2 ml-3 mr-3">
+  <div class="card-header">
+    <h5>人数・3年4年比・男女比</h5>
+  </div>
+  <div class="card-body">
+    <p>総数{{ total_num }}名</p>
+    <p>4年：{{ senior_num }}名(男{{ detail_semi.seni_men_num }}/女{{ detail_semi.seni_women_num }})</p>
+    <p>3年：{{ junior_num }}名(男{{ detail_semi.juni_men_num }}/女{{ detail_semi.juni_women_num }})</p>
+  </div>
+</div>
+
+<div class="card shadow-sm mt-2 mb-2 ml-3 mr-3">
+  <div class="card-header">
+    <h5>研究分野</h5>
+  </div>
+  <div class="card-body">
+    <p>{{ detail_semi.area_of_seminar }}</p>
+  </div>
+</div>
+
+<div class="card shadow-sm mt-2 mb-2 ml-3 mr-3">
+  <div class="card-header">
+    <h5>年間予定</h5>
+  </div>
+  <div class="card-body">
+    <p>{{ detail_semi.semi_schedule }}</p>
+  </div>
+</div>
+
+<div class="card shadow-sm mt-2 mb-2 ml-3 mr-3">
+  <div class="card-header">
+    <h5>特色・このゼミの良さ</h5>
+  </div>
+  <div class="card-body">
+    <p>{{ detail_semi.feature }}</p>
+  </div>
+</div>
+
+<div class="card shadow-sm mt-2 mb-2 ml-3 mr-3">
+  <div class="card-header">
+    <h5>見学可能日</h5>
+  </div>
+  <div class="card-body">
+    <p>{{ detail_semi.visitable_date }}</p>
+  </div>
+</div>
+
+<div class="card shadow-sm mt-2 mb-2 ml-3 mr-3">
+  <div class="card-header">
+    <h5>見学の形式</h5>
+  </div>
+  <div class="card-body">
+    {% if detail_semi.on_offline == 1 %}
+    <p>オンラインで実施</p>
+    {% elif detail_semi.on_offline == 2 %}
+    <p>対面で実施</p>
+    {% elif detail_semi.on_offline == 3 %}
+    <p>オンラインでの実施か、対面での実施かは未定</p>
+    {% endif %}
+  </div>
+</div>
+
+<div class="card shadow-sm mt-2 mb-2 ml-3 mr-3">
+  <div class="card-header">
+    <h5>見学希望者へのメッセージ</h5>
+  </div>
+  <div class="card-body">
+    <p>{{ detail_semi.message_for_sutudent }}</p>
+  </div>
+</div>
+
+
+    <!-- 活動風景 -->
+    <div class="row mt-3 mb-2">
+      <div class='rounded shadow-sm offset-1 col-5 p-1 mr-2'>
+        {% if detail_semi.semi_image1 %}
+        <img src="{{ detail_semi.semi_image1.url }}" class='img-fluid' alt='noimage'>
+        {% else %}
+        <img src="{% static 'image_material/noimage.jpg' %}" class='img-fluid' alt="noimage">
+        {% endif %}
+      </div>
+
+      <div class='rounded shadow-sm col-5 p-1'>
+        {% if detail_semi.semi_image2 %}
+        <img src="{{ detail_semi.semi_image2.url }}" class='img-fluid' alt='noimage'>
+        {% else %}
+        <img src="{% static 'image_material/noimage.jpg' %}" class='img-fluid' alt="noimage">
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class='rounded shadow-sm offset-1 col-5 p-1 mr-2'>
+        {% if detail_semi.semi_image3 %}
+        <img src="{{ detail_semi.semi_image3.url }}" class='img-fluid' alt='noimage'>
+        {% else %}
+        <img src="{% static 'image_material/noimage.jpg' %}" class='img-fluid' alt="noimage">
+        {% endif %}
+      </div>
+
+      <div class='srounded shadow-sm col-5 p-1'>
+        {% if detail_semi.semi_image4 %}
+        <img src="{{ detail_semi.semi_image4.url }}" class='img-fluid' alt='noimage'>
+        {% else %}
+        <img src="{% static 'image_material/noimage.jpg' %}" class='img-fluid' alt="noimage">
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class='rounded shadow-sm offset-1 col-5 p-1 mr-2'>
+        {% if detail_semi.semi_image5 %}
+        <img src="{{ detail_semi.semi_image5.url }}" class='img-fluid' alt='noimage'>
+        {% else %}
+        <img src="{% static 'image_material/noimage.jpg' %}" class='img-fluid' alt="noimage">
+        {% endif %}
+      </div>
+
+      <div class='rounded shadow-sm col-5 p-1'>
+        {% if detail_semi.semi_image6 %}
+        <img src="{{ detail_semi.semi_image6.url }}" class='img-fluid' alt='noimage'>
+        {% else %}
+        <img src="{% static 'image_material/noimage.jpg' %}" class='img-fluid' alt="noimage">
+        {% endif %}
+      </div>
+    </div>
+
+<div class="border-top  offset-1 pb-5 mt-3 mb-5">
+  <p class="mt-3">使い方ガイド</p>
+  <p>お問い合わせ</p>
+</div>
+
+{% include 'refactoring.html' %}
+
+{% endblock %}

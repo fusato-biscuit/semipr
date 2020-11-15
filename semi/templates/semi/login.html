@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<form method="post">{% csrf_token %}
+  {% if form.errors %}
+    <p>ユーザー名かパスワードが間違っています。</p>
+    <a href="{% url 'semi:entrance' %}">トップページへ戻る</a>
+  {% endif %}
+  <img src="{% static 'image_material/login.jpg' %}" class='img-fluid' alt="Noimage">
+  <div class="text-center">
+    <label>Username</label>
+    <input name="username">
+  </div>
+  <div class="text-center">
+    <label>Password</label>
+    <input type="password" name="password">
+  </div>
+  <div class="text-center mt-3 mb-5">
+    <input type="submit" class='btn btn-outline-info' value="Login">
+  </div>
+
+</form>
+
+{% endblock %}

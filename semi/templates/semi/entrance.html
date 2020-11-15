@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="col-8 offset-2 mt-5">
+  <img src="{% static 'image_material/okiu.jpg' %}" class='img-fluid' alt="Noimage">
+</div>
+
+<div class="text-center">
+  <a href="{% url 'semi:login' %}" class='btn btn-outline-danger'>
+    Entrance for admin
+  </a>
+</div>
+
+<div class="text-center mt-3 mb-5">
+  <a href="{% url 'semi:seminar' %}" class='btn btn-outline-primary'>
+    Entrance for student
+  </a>
+</div>
+
+
+
+{% endblock %}
