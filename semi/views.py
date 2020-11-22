@@ -67,32 +67,60 @@ def check_booking(request):
 
 # 予約確認
 def booking_list(request):
-    if request.user.username == 'ibata':
+    if request.user.username == 'ibataba':
         bookings = Booking.objects.filter(select_semi=2)
-    elif request.user.username == 'imura':
+    elif request.user.username == 'imuraba':
         bookings = Booking.objects.filter(select_semi=3)
-    elif request.user.username == 'wellgab8':
+    elif request.user.username == 'uezuba':
         bookings = Booking.objects.filter(select_semi=4)
-    elif request.user.username == 'kumagaya':
+    elif request.user.username == 'uezubb':
         bookings = Booking.objects.filter(select_semi=5)
-    elif request.user.username == 'konisi':
+    elif request.user.username == 'kumagayaba':
         bookings = Booking.objects.filter(select_semi=6)
-    elif request.user.username == 'simizu':
+    elif request.user.username == 'kumagayabb':
         bookings = Booking.objects.filter(select_semi=7)
-    elif request.user.username == 'suezaki':
+    elif request.user.username == 'kuroyanagibb':
         bookings = Booking.objects.filter(select_semi=8)
-    elif request.user.username == 'date':
+    elif request.user.username == 'konisiba':
         bookings = Booking.objects.filter(select_semi=9)
-    elif request.user.username == 'tanaka':
+    elif request.user.username == 'konisibb':
         bookings = Booking.objects.filter(select_semi=10)
-    elif request.user.username == 'nakano':
+    elif request.user.username == 'satou1bb':
         bookings = Booking.objects.filter(select_semi=11)
-    elif request.user.username == 'nisisako':
+    elif request.user.username == 'satou2bb':
         bookings = Booking.objects.filter(select_semi=12)
-    elif request.user.username == 'hiyajou':
+    elif request.user.username == 'sibata1bb':
         bookings = Booking.objects.filter(select_semi=13)
-    elif request.user.username == 'maetu':
+    elif request.user.username == 'sibata2bb':
         bookings = Booking.objects.filter(select_semi=14)
-    elif request.user.username == 'yamasita':
+    elif request.user.username == 'simizuba':
         bookings = Booking.objects.filter(select_semi=15)
+    elif request.user.username == 'suezakiba':
+        bookings = Booking.objects.filter(select_semi=16)
+    elif request.user.username == 'tairabb':
+        bookings = Booking.objects.filter(select_semi=17)
+    elif request.user.username == 'dateba':
+        bookings = Booking.objects.filter(select_semi=18)
+    elif request.user.username == 'tanakaba':
+        bookings = Booking.objects.filter(select_semi=19)
+    elif request.user.username == 'tanakabb':
+        bookings = Booking.objects.filter(select_semi=20)
+    elif request.user.username == 'nakanoba':
+        bookings = Booking.objects.filter(select_semi=21)
+    elif request.user.username == 'nakanobb':
+        bookings = Booking.objects.filter(select_semi=22)
+    elif request.user.username == 'nisisakoba':
+        bookings = Booking.objects.filter(select_semi=23)
+    elif request.user.username == 'nozoebb':
+        bookings = Booking.objects.filter(select_semi=24)
+    elif request.user.username == 'hiyajouba':
+        bookings = Booking.objects.filter(select_semi=25)
+    elif request.user.username == 'hiyajoubb':
+        bookings = Booking.objects.filter(select_semi=26)
+    elif request.user.username == 'maetuba':
+        bookings = Booking.objects.filter(select_semi=27)
+    elif request.user.username == 'maetubb':
+        bookings = Booking.objects.filter(select_semi=28)
+    elif request.user.username == 'yamasitaba':
+        bookings = Booking.objects.filter(select_semi=29)
     return render(request, 'semi/booking_list.html', {'bookings': bookings})
