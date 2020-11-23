@@ -1,0 +1,26 @@
+{% if request.user.is_authenticated %}
+
+  <div class="text-center mt-5 mb-5">
+    <h2>ゼミ一覧</h2>
+    <p class='text-info'>（管理者用画面）</p>
+  </div>
+  <div class="row">
+    <div class="text-left col-4 mb-2 ml-3">
+      <a href="{% url 'semi:entrance' %}" class='btn btn-outline-primary'>Topページへ戻る</a>
+    </div>
+    <div class="text-right col-7 mb-2">
+      <a href="{% url 'semi:logout' %}" class='btn btn-outline-danger mb-2'>ログアウト</a>
+      <a href="{% url 'semi:create_seminar' %}" class='btn btn-outline-danger mb-2'>ゼミを新規作成する</a>
+    </div>
+  </div>
+
+{% else %}
+
+  <div class="text-center mt-5">
+    <h2>ゼミ一覧</h2>
+  </div>
+  <div class="text-right mb-2 mr-2">
+    <a href="{% url 'semi:entrance' %}" class='btn btn-outline-primary'>Topページへ戻る</a>
+  </div>
+
+{% endif %}

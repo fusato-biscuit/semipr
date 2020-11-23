@@ -1,0 +1,12 @@
+
+
+{% for seminar in seminars %}
+<div class="card shadow-sm col-10 offset-1 mb-2">
+  <div class="card-body text-right">
+    <div class="text-left">
+      <h5 class='card-title'>{{ seminar.semi_name }}ゼミ</h5>
+    </div>
+    <a href="{% url 'semi:detail_seminar' semi_id=seminar.id %}" class="btn btn-outline-info">詳細</a>
+  </div>
+</div>
+{% endfor %}

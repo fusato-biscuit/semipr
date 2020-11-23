@@ -6,6 +6,13 @@ from django.utils import timezone
 
 class Seminar(models.Model):
     semi_name = models.CharField(null=False, max_length=30)
+    department_choice = (
+        (1, '未選択'),
+        (2, '法律学科'),
+        (3, '地域行政学科'),
+    )
+    department = models.IntegerField(choices=department_choice, default=1)
+    teach_name = models.CharField(null=True, max_length=30)
     mail = models.EmailField(max_length=100)
     area_of_seminar = models.TextField(max_length=150)
     semi_schedule = models.TextField(blank=True)

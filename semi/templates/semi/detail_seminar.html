@@ -3,10 +3,18 @@
 {% block content %}
 
 {% if detail_semi.account == request.user %}
-<div class="text-center mt-5 mb-5">
-  <h2>{{ detail_semi.semi_name }}ゼミ</h2>
-  <p class='text-info'>（管理者用画面）</p>
-</div>
+  {% if detail_semi.department == 2 %}
+    <div class="text-center mt-5 mb-5">
+      <h2>{{ detail_semi.semi_name }}ゼミ(法律)</h2>
+      <p class='text-info'>（管理者用画面）</p>
+    </div>
+  {% else %}
+    <div class="text-center mt-5 mb-5">
+      <h2>{{ detail_semi.semi_name }}ゼミ(地行)</h2>
+      <p class='text-info'>（管理者用画面）</p>
+    </div>
+  {% endif %}
+
 <div class="row">
 <div class="text-left col-4 mb-2 ml-3">
   <a href="{% url 'semi:seminar' %}" class='btn btn-outline-primary'>ゼミ一覧へ戻る</a>
@@ -45,9 +53,16 @@
   </div>
 
 {% else %}
-<div class="text-center mt-5 mb-5">
-  <h2>{{ detail_semi.semi_name }}ゼミ</h2>
-</div>
+  {% if detail_semi.department == 2 %}
+    <div class="text-center mt-5 mb-5">
+      <h2>{{ detail_semi.semi_name }}ゼミ(法律)</h2>
+    </div>
+  {% else %}
+    <div class="text-center mt-5 mb-5">
+      <h2>{{ detail_semi.semi_name }}ゼミ(地行)</h2>
+    </div>
+  {% endif %}
+
 <div class="row">
   <div class="text-left col-4 mb-2 ml-3">
     <a href="{% url 'semi:send_booking' %}" class='btn btn-outline-primary'>見学予約はコチラから</a>
@@ -195,11 +210,7 @@
       </div>
     </div>
 
-<div class="border-top  offset-1 pb-5 mt-3 mb-5">
-  <p class="mt-3">使い方ガイド</p>
-  <p>お問い合わせ</p>
-</div>
 
-{% include 'refactoring.html' %}
+{% include 'ref_footer.html' %}
 
 {% endblock %}

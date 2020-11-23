@@ -8,8 +8,12 @@ def entrance(request):
     return render(request, 'semi/entrance.html')
 
 def seminar(request):
-    seminars = Seminar.objects.all()
+    seminars = Seminar.objects.filter(department=2)
     return render(request, 'semi/seminar.html', {'seminars': seminars})
+
+def seminarbb(request):
+    seminars = Seminar.objects.filter(department=3)
+    return render(request, 'semi/seminarbb.html', {'seminars': seminars})
 
 
 def create_seminar(request):
@@ -50,6 +54,9 @@ def delete_seminar(request, semi_id):
     delete_semi = get_object_or_404(Seminar, id=semi_id)
     delete_semi.delete()
     return redirect('semi:seminar')
+
+def info(request):
+    return render(request, 'semi/info.html')
 
 # 予約登録
 def send_booking(request):
