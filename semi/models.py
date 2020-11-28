@@ -77,5 +77,5 @@ class Booking(models.Model):
         (28, '前津ゼミ(地行)'),
         (29, '山下ゼミ(法律)'),
     )
-    select_semi = models.IntegerField(choices=select_semi_choice, default=1)
+    select_semi = models.IntegerField(choices=select_semi_choice, default=4)
     updated_at = models.DateTimeField(auto_now=True)

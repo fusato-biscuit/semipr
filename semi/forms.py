@@ -19,4 +19,4 @@ class SeminarForm(forms.ModelForm):
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ['stu_num', 'booking_date', 'select_semi']
+        fields = ['stu_num', 'booking_date']
