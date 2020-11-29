@@ -107,7 +107,7 @@
     <h5>研究分野</h5>
   </div>
   <div class="card-body">
-    <p>{{ detail_semi.area_of_seminar }}</p>
+    <p>{{ detail_semi.area_of_seminar | linebreaksbr }}</p>
   </div>
 </div>
 
@@ -116,7 +116,7 @@
     <h5>年間予定</h5>
   </div>
   <div class="card-body">
-    <p>{{ detail_semi.semi_schedule }}</p>
+    <p>{{ detail_semi.semi_schedule | linebreaksbr }}</p>
   </div>
 </div>
 
@@ -125,7 +125,7 @@
     <h5>特色・このゼミの良さ</h5>
   </div>
   <div class="card-body">
-    <p>{{ detail_semi.feature }}</p>
+    <p>{{ detail_semi.feature | linebreaksbr }}</p>
   </div>
 </div>
 
@@ -134,7 +134,7 @@
     <h5>見学可能日</h5>
   </div>
   <div class="card-body">
-    <p>{{ detail_semi.visitable_date }}</p>
+    <p>{{ detail_semi.visitable_date | linebreaksbr }}</p>
   </div>
 </div>
 
@@ -158,7 +158,7 @@
     <h5>見学希望者へのメッセージ</h5>
   </div>
   <div class="card-body">
-    <p>{{ detail_semi.message_for_sutudent }}</p>
+    <p>{{ detail_semi.message_for_sutudent | linebreaksbr }}</p>
   </div>
 </div>
 
