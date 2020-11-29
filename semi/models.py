@@ -22,14 +22,14 @@ class Seminar(models.Model):
     juni_women_num = models.IntegerField()
     feature = models.TextField(blank=True)
     semi_update_at = models.DateTimeField(auto_now=True)
-    visitable_date = models.TextField(max_length=50, blank=True)
+    visitable_date = models.TextField(blank=True)
     on_offline_choice = (
         (1, 'オンライン'),
         (2, '対面'),
         (3, '未定'),
     )
     on_offline = models.IntegerField(choices=on_offline_choice, default=3)
-    message_for_sutudent = models.TextField(max_length=100, blank=True)
+    message_for_sutudent = models.TextField(blank=True)
     semi_image1 = models.ImageField(upload_to='seminar_photos', blank=True, null=True)
     semi_image2 = models.ImageField(upload_to='seminar_photos', blank=True, null=True)
     semi_image3 = models.ImageField(upload_to='seminar_photos', blank=True, null=True)
